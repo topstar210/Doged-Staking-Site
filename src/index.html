@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DogeChainStable Interface</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+    <header>
+        <h1>DogeChainStable</h1>
+        <button id="connectWallet" aria-label="Connect Wallet">Connect Wallet</button>
+        <div id="walletInfo">Connected Wallet: <span id="connectedWalletAddress">None</span></div>
+    </header>
+
+    <main>
+        <section class="stake-section">
+            <h2>Stake DOGE</h2>
+            <div class="form-group">
+                <label for="stakeAmount">Amount in DOGE:</label>
+                <input type="number" id="stakeAmount" placeholder="Enter the amount" value="0.1" min="0" aria-label="Amount in DOGE">
+                <button id="stakeButton" aria-label="Stake DOGE">Stake DOGE</button>
+            </div>
+        </section>
+
+        <section class="unstake-section">
+            <h2>Unstake and Claim Rewards</h2>
+            <div class="form-group">
+                <label for="unstakeAmount">Amount in STABLE:</label>
+                <input type="number" id="unstakeAmount" placeholder="Enter the amount" min="0" aria-label="Amount in STABLE">
+                <button id="unstakeButton" aria-label="Unstake STABLE">Unstake STABLE</button>
+            </div>
+        </section>
+
+        <section id="contractInfo">
+            <h3>Contract Information</h3>
+            <p>Total Supply of STABLE: <span id="totalSupply">0</span></p>
+            <p>Your STABLE Balance: <span id="userBalance">0</span></p>
+        </section>
+
+        <section id="transactionStatus">
+            <h3>Transaction Status</h3>
+            <p id="transactionMessage"></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 DogeChainStable. All rights reserved.</p>
+    </footer>
+
+    <!-- Notice we are pointing to `bundle.js` file -->
+    <!-- <script src="bundle.js"></script> -->
+</body>
+</html>
