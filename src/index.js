@@ -1,10 +1,11 @@
 import "./style.css";
 import { ethers, parseEther, parseUnits } from 'ethers';
+import * as toastr from "toastr"
+import "toastr/build/toastr.min.css";
+
 import { contractABI, wwDogeTokenABI } from "./ABIs.js";
 
-// 0x9A98280A6818ed8AFd500cC378ACcf92fcc13Fe0 
 // 0x617C6420dB84992f5C0776038839599A285f836D missed dogeToken.allowance
-// 0x31924Aa3F1e3df30E8eA5BE5EcB208CB65A36e7f missed dogetoken.transferFrom and allowance
 // 0x37551909564B3b966598046c26078919e61e7FBD stake token is eve 
 const contractAddress = '0x37551909564B3b966598046c26078919e61e7FBD';
 // 0xB7ddC6414bf4F5515b52D8BdD69973Ae205ff101 wdoge address on dogechain mainnet
@@ -22,10 +23,17 @@ async function connectWallet() {
       provider = new ethers.BrowserProvider(window.ethereum)
       signer = await provider.getSigner();
     }
+    const network = await provider.getNetwork();
+    if(network?.chainId !== BigInt(2000)){
+      toastr.info("Please select Dogechain.");
+      return;
+    }
 
     account = signer.address;
-    document.getElementById('connectedWalletAddress').textContent = account;
-    document.getElementById('connectWallet').style.display = 'none'
+    const shortenedAddress = `${account.substring(0, 6)}...${account.substring(38)}`;
+    document.getElementById('connectedWalletAddress').textContent = shortenedAddress;
+    document.getElementById('connectWallet').style.display = 'none';
+    document.getElementById('walletInfo').style.display = 'block';
     console.log('Connected to MetaMask');
   } catch (error) {
     handleError('MetaMask connection error', error);
@@ -57,14 +65,12 @@ async function stakeTokens() {
   await checkAndApproveToken(etherAmount);
 
   try {
-    // const gasEstimate = await contract.stake.estimateGas(etherAmount);
-    // const gasLimit = gasEstimate + BigInt(3000);
-    // const gasPrice = parseUnits('15', 'gwei');
     const tx = await contract.stake(etherAmount);
     await tx.wait();
 
     updateContractInfo();
     updateMessage("Stake transaction successful.");
+    document.getElementById('stakeAmount').value = '';
   } catch (error) {
     handleError('Staking error', error);
   }
@@ -83,6 +89,7 @@ async function unstakeTokens() {
     await tx.wait;
     await updateContractInfo();
     updateMessage("Unstake transaction successful.");
+    document.getElementById('unstakeAmount').value = '';
   } catch (error) {
     handleError('Unstaking error', error);
   }
@@ -101,15 +108,16 @@ async function updateContractInfo() {
 }
 
 function updateMessage(message, isError = false) {
-  const messageElement = document.getElementById('transactionMessage');
-  messageElement.textContent = message;
-  messageElement.style.color = isError ? 'red' : 'green';
-  setTimeout(() => messageElement.textContent = '', 5000); // Clear message after 5 seconds
+  if(!isError) {
+    toastr.success(message);
+  } else {
+    toastr.error(message);
+  }
 }
 
 function handleError(errorMessage, error) {
   console.error(errorMessage, error);
-  updateMessage(`${errorMessage}: ${error.message}`, true);
+  updateMessage(`${errorMessage}:<br /> ${error.message}`, true);
 }
 
 async function init() {

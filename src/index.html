@@ -1,55 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DogeChainStable Interface</title>
-    <!-- Favicon -->
+    <link href="https://fonts.googleapis.com/css?family=Recursive&amp;display=swap" rel="stylesheet">
+    <title>DogeChainStable</title>
     <link rel="icon" type="image/png" href="favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <header>
-        <h1>DogeChainStable</h1>
-        <button id="connectWallet" aria-label="Connect Wallet">Connect Wallet</button>
-        <div id="walletInfo">Connected Wallet: <span id="connectedWalletAddress">None</span></div>
-    </header>
 
-    <main>
-        <section class="stake-section">
-            <h2>Stake DOGE</h2>
-            <div class="form-group">
-                <label for="stakeAmount">Amount in DOGE:</label>
-                <input type="number" id="stakeAmount" placeholder="Enter the amount" value="0.1" min="0" aria-label="Amount in DOGE">
-                <button id="stakeButton" aria-label="Stake DOGE">Stake DOGE</button>
+<body class="">
+    <div class="mx-auto max-w-5xl">
+        <header class="w-full flex justify-between items-end py-5">
+            <div class="cursor-pointer">
+                <img src="/logo.png" width="100" alt="logo" />
             </div>
-        </section>
-
-        <section class="unstake-section">
-            <h2>Unstake and Claim Rewards</h2>
-            <div class="form-group">
-                <label for="unstakeAmount">Amount in STABLE:</label>
-                <input type="number" id="unstakeAmount" placeholder="Enter the amount" min="0" aria-label="Amount in STABLE">
-                <button id="unstakeButton" aria-label="Unstake STABLE">Unstake STABLE</button>
+            <button id="connectWallet" class="p-3 bg-[#EAA186] text-[#F5F5F7] rounded-xl">Connect your wallet</button>
+            <div id="walletInfo" class="hidden text-lg">Connected Wallet: <span id="connectedWalletAddress">None</span></div>
+        </header>
+        <main class="mt-10">
+            <div class="lg:flex lg:flex-row">
+                <div class="basis-1/2 p-4">
+                    <h1 class="text-3xl font-semibold py-4">Introducing DOGE DOLLAR</h1>
+                    <div>
+                        With DOGE DOLLAR, or DOGED for short, you're holding the one and only token on DogeChain that's
+                        as stable as a rocketship's trajectory to the moon! 🌕🚀
+                        <br><br>
+                        Backed by our beloved Dogecoin and powered by a crew of trusty price oracles, DOGED is your
+                        ticket to a crypto adventure that's both exciting and secure. 🌐💎
+                        <br><br>
+                        Say goodbye to those crypto rollercoasters and hello to the DOGE DOLLAR dance! 🎉💰
+                        <br><br>
+                        Join us in riding the waves of Dogecoin's spirit while keeping your crypto stash safe and sound.
+                        Get your DOGE DOLLAR today and be part of the DogeChain future! 🐾🚀
+                    </div>
+                </div>
+                <div class="basis-1/2 p-4 flex items-center justify-center">
+                    <div class="w-full rounded-3xl bg-[#ffffff12] p-8">
+                        <div>
+                            <h2 class="text-center text-2xl pb-2">Stake Doge</h2>
+                            <div class="">
+                                <label for="">Amount In DOGE</label>
+                                <div
+                                    class="mt-2 border-2 border-[#EAA186] rounded-xl h-[52px] w-full flex justify-between">
+                                    <input type="number" min="0.1" id="stakeAmount"
+                                        class="h-full w-full rounded-xl bg-transparent outline-none px-4" />
+                                    <button id="stakeButton"
+                                        class="flex-none w-36 h-full bg-[#EAA186] text-[#F5F5F7] rounded-xl -mr-1">Stake
+                                        DOGE</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <h2 class="text-center text-2xl pb-2">Unstake and Claim Rewards</h2>
+                            <div class="">
+                                <label for="">Amount in STABLE</label>
+                                <div
+                                    class="mt-2 border-2 border-[#EAA186] rounded-xl h-[52px] w-full flex justify-between">
+                                    <input type="number" min="0.1" id="unstakeAmount"
+                                        class="h-full w-full rounded-xl bg-transparent outline-none px-4" />
+                                    <button id="unstakeButton"
+                                        class="flex-none w-36 h-full bg-[#EAA186] text-[#F5F5F7] rounded-xl -mr-1">Unstake
+                                        DOGE</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </section>
-
-        <section id="contractInfo">
-            <h3>Contract Information</h3>
-            <p>Total Supply of STABLE: <span id="totalSupply">0</span></p>
-            <p>Your STABLE Balance: <span id="userBalance">0</span></p>
-        </section>
-
-        <section id="transactionStatus">
-            <h3>Transaction Status</h3>
-            <p id="transactionMessage"></p>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2023 DogeChainStable. All rights reserved.</p>
-    </footer>
-
-    <!-- Notice we are pointing to `bundle.js` file -->
-    <!-- <script src="bundle.js"></script> -->
+            <div class="w-full">
+                <h3 class="text-xl py-5 text-center">Contract Information</h3>
+                <div class="">
+                    <div class="grid grid-cols-2 gap-4 w-full">
+                        <div class="text-right">Total Supply of STABLE:</div>
+                        <div class="text-left" id="totalSupply">0</div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 w-full">
+                        <div class="text-right">Your STABLE Balance: </div>
+                        <div class="text-left" id="userBalance">0</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="py-5 mt-5 text-center text-[rgba(183,183,183,1)] w-full text-sm">
+            <p>&copy; 2024 DogeChainStable. All rights reserved.</p>
+        </footer>
+    </div>
 </body>
+
 </html>
