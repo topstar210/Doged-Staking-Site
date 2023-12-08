@@ -25,18 +25,18 @@ async function connectWallet() {
 
     account = signer.address;
     document.getElementById('connectedWalletAddress').textContent = account;
-    document.getElementById('connectWallet').style.display='none'
+    document.getElementById('connectWallet').style.display = 'none'
     console.log('Connected to MetaMask');
   } catch (error) {
     handleError('MetaMask connection error', error);
   }
 }
 
-async function checkAndApproveToken(etherAmount) { 
+async function checkAndApproveToken(etherAmount) {
   try {
     const allowance = await wwDogeTokenContract.allowance(account, contractAddress);
     console.log('checkAndApproveToken', allowance.toString());
-  
+
     if (allowance < etherAmount) {
       const tx = await wwDogeTokenContract.approve(contractAddress, etherAmount);
       await tx.wait();
@@ -45,7 +45,7 @@ async function checkAndApproveToken(etherAmount) {
     handleError('Approval error', error);
   }
 }
-  
+
 async function stakeTokens() {
   const amount = document.getElementById('stakeAmount').value;
   if (amount <= 0) {
@@ -57,10 +57,10 @@ async function stakeTokens() {
   await checkAndApproveToken(etherAmount);
 
   try {
-    const gasEstimate = await contract.stake.estimateGas(etherAmount);
-    const gasLimit = gasEstimate + BigInt(3000);
-    const gasPrice = parseUnits('15', 'gwei');
-    const tx = await contract.stake(etherAmount, { gasLimit, gasPrice });
+    // const gasEstimate = await contract.stake.estimateGas(etherAmount);
+    // const gasLimit = gasEstimate + BigInt(3000);
+    // const gasPrice = parseUnits('15', 'gwei');
+    const tx = await contract.stake(etherAmount);
     await tx.wait();
 
     updateContractInfo();
