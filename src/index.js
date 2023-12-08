@@ -9,7 +9,7 @@ import { contractABI, wwDogeTokenABI } from "./ABIs.js";
 // 0x37551909564B3b966598046c26078919e61e7FBD stake token is eve 
 const contractAddress = '0x37551909564B3b966598046c26078919e61e7FBD';
 // 0xB7ddC6414bf4F5515b52D8BdD69973Ae205ff101 wdoge address on dogechain mainnet
-// 0x70acE47D53A8A2C8BfB6b4e5755291570D2449A3  eve token address
+// 0x70acE47D53A8A2C8BfB6b4e5755291570D2449A3 eve token address
 const wwDogeTokenAddress = "0x70acE47D53A8A2C8BfB6b4e5755291570D2449A3";
 let signer = null;
 let account, provider, contract, wwDogeTokenContract;
