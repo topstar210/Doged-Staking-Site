@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "copy-webpack-plugin": "^11.0.0",
     "ethers": "^6.9.0",
     "toastr": "^2.1.4",
     "web-vitals": "^3.5.0"
