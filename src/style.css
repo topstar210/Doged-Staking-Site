@@ -3,7 +3,7 @@
 body {
     width: 100%;
     min-height: 100vh;
-    background: linear-gradient(rgba(29,29,31,1), rgba(46,46,54,1));
+    background: linear-gradient(#1D1D1F, rgba(46,46,54,1));
     color: rgba(245,245,247,1);
     font-family: 'Recursive', sans-serif;
 }
