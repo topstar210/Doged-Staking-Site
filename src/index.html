@@ -10,18 +10,16 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="">
+<body class="relative">
     <div class="mx-auto max-w-5xl">
-        <header class="w-full flex justify-between items-end py-5">
-            <div class="cursor-pointer">
-                <img src="./logo.png" width="100" alt="logo" />
+        <div class="w-full py-5 flex justify-center">
+            <div class="cursor-pointer w-[180px]">
+                <img src="./logo.png" class="w-full" alt="logo" />
             </div>
-            <button id="connectWallet" class="p-3 bg-[#fdf4e5] text-[#1e1d1b] rounded-xl">Connect your wallet</button>
-            <div id="walletInfo" class="hidden text-lg">Connected Wallet: <span id="connectedWalletAddress">None</span></div>
-        </header>
-        <main class="mt-10">
-            <div class="lg:flex lg:flex-row">
-                <div class="basis-1/2 p-4">
+        </div>
+        <div class="-mt-[110px] mx-2 border-8 border-[#ee8a35] rounded-lg">
+            <div class="sm:p-10 my-5 sm:my-10 lg:flex lg:flex-row">
+                <div class="basis-1/2 p-4 flex flex-col justify-center">
                     <h1 class="text-3xl font-semibold py-4">Introducing DOGE DOLLAR</h1>
                     <div>
                         With DOGE DOLLAR, or DOGED for short, you're holding the one and only token on DogeChain that's
@@ -36,53 +34,82 @@
                         Get your DOGE DOLLAR today and be part of the DogeChain future! 🐾🚀
                     </div>
                 </div>
-                <div class="basis-1/2 p-4 flex items-center justify-center">
-                    <div class="w-full rounded-3xl bg-[#ffffff12] p-8">
+                <div class="basis-1/2 p-4 flex flex-col justify-center">
+                    <div class="text-right mb-10">
+                        <button id="connectWallet" class="p-3 bg-[#fdf4e5] text-[#1e1d1b] rounded-xl">
+                            Connect your wallet
+                        </button>
+                        <div id="walletInfo" class="hidden text-lg">
+                            Connected Wallet: <span id="connectedWalletAddress">None</span>
+                        </div>
+                    </div>
+                    <div class="w-full rounded-xl bg-[#ffffff12] p-8">
                         <div>
-                            <h2 class="text-center text-2xl pb-2">Stake Doge</h2>
+                            <h2 class="text-2xl pb-2">Stake $WDOGE</h2>
                             <div class="">
-                                <label for="">Amount In DOGE</label>
+                                <label for="">Amount In $WDOGE</label>
                                 <div
-                                    class="mt-2 border-2 border-[#fdf4e5] rounded-xl h-[52px] w-full flex justify-between">
+                                    class="mt-2 border-2 border-[#fdf4e5] rounded-lg h-[52px] w-full flex justify-between">
                                     <input type="number" min="0.1" id="stakeAmount"
-                                        class="h-full w-full rounded-xl bg-transparent outline-none px-4" />
+                                        class="h-full w-full rounded-lg bg-transparent outline-none px-4" />
                                     <button id="stakeButton"
-                                        class="flex-none w-36 h-full bg-[#fdf4e5] text-[#1e1d1b] rounded-xl -mr-1">Stake
-                                        DOGE</button>
+                                        class="flex-none w-36 h-full bg-[#fdf4e5] text-[#1e1d1b] rounded-lg -mr-1">Stake
+                                    </button>
                                 </div>
                             </div>
                         </div>
                         <div class="mt-6">
-                            <h2 class="text-center text-2xl pb-2">Unstake and Claim Rewards</h2>
+                            <h2 class="text-2xl pb-2">Unstake $DOGED and Claim Rewards</h2>
                             <div class="">
-                                <label for="">Amount in STABLE</label>
+                                <label for="">Amount in $DOGED</label>
                                 <div
-                                    class="mt-2 border-2 border-[#fdf4e5] rounded-xl h-[52px] w-full flex justify-between">
+                                    class="mt-2 border-2 border-[#fdf4e5] rounded-lg h-[52px] w-full flex justify-between">
                                     <input type="number" min="0.1" id="unstakeAmount"
-                                        class="h-full w-full rounded-xl bg-transparent outline-none px-4" />
+                                        class="h-full w-full rounded-lg bg-transparent outline-none px-4" />
                                     <button id="unstakeButton"
-                                        class="flex-none w-36 h-full bg-[#fdf4e5] text-[#1e1d1b] rounded-xl -mr-1">Unstake
-                                        DOGE</button>
+                                        class="flex-none w-36 h-full bg-[#fdf4e5] text-[#1e1d1b] rounded-lg -mr-1">Claim
+                                        Rewards
+                                    </button>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full">
+                        <h3 class="text-xl py-5 text-center">Contract Information</h3>
+                        <div class="">
+                            <div class="grid grid-cols-2 gap-4 w-full">
+                                <div class="text-right">Total Supply of STABLE:</div>
+                                <div class="text-left" id="totalSupply">0</div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 w-full">
+                                <div class="text-right">Your STABLE Balance: </div>
+                                <div class="text-left" id="userBalance">0</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="w-full">
-                <h3 class="text-xl py-5 text-center">Contract Information</h3>
-                <div class="">
-                    <div class="grid grid-cols-2 gap-4 w-full">
-                        <div class="text-right">Total Supply of STABLE:</div>
-                        <div class="text-left" id="totalSupply">0</div>
-                    </div>
-                    <div class="grid grid-cols-2 gap-4 w-full">
-                        <div class="text-right">Your STABLE Balance: </div>
-                        <div class="text-left" id="userBalance">0</div>
-                    </div>
-                </div>
-            </div>
-        </main>
+        </div>
+        <div class="text-center px-10 pt-10">
+            <p class="pb-5">
+                Doge Dollar (DOGED) is designed with advanced stability mechanisms to navigate the volatile cryptocurrency landscape. It includes robust fail-safe systems for operational security and multiple oracles to ensure accurate market data representation. Key to its stability is the implementation of a 'Volatility Dampener', which significantly mitigates market fluctuations. Additionally, DOGED employs dynamic minting and burning processes to maintain balance in token supply. Backed by Dogecoin, it offers a reliable collateral base, further anchoring its stability in the digital currency market.
+            </p>
+            <p class="pb-5">
+                Engaging with cryptocurrencies, including Doge Dollar (DOGED), carries inherent risks and may not be appropriate for everyone. The nature of cryptocurrency markets is highly volatile and unpredictable, which can lead to significant fluctuations in value. It is important for individuals to conduct comprehensive research and consider their own financial situation and risk tolerance before engaging with cryptocurrencies.
+            </p>            
+            <p class="pb-5">
+                Doge Dollar is a part of the DogeChain platform, a decentralized blockchain network. The contract for Doge Dollar is publicly available, ensuring transparency and fostering community trust. While DogeChain strives to maintain a secure environment, using advanced security measures to uphold network integrity, it is essential to recognize that no digital platform or cryptocurrency can offer absolute security against all potential risks.
+            </p>
+        </div>
+        <div class="text-center px-10 py-10">
+            <p>
+                Explore DOGED at <a href="https://buildadoge.dog/" class="underline" target="_blank">BuildADoge.dog</a>, proudly nestled within the innovative  <a href="https://eden.dog/" class="underline" target="_blank">EDEN.dog</a> Oasis.
+            </p>
+            <p>
+                Find and engage with DOGED on <a href="https://dogeguard.dog/" class="underline" target="_blank">DogeGuard.dog</a>, the premier DeFi platform for DogeChain enthusiasts.
+            </p>
+        </div>
+
         <footer class="py-5 mt-5 text-center text-[rgb(228 226 226)] w-full text-sm">
             <p>&copy; 2024 DogeChainStable. All rights reserved.</p>
         </footer>
