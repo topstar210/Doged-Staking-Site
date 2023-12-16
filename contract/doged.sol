@@ -72,10 +72,6 @@ contract DOGED is ERC20, Ownable, Pausable, ReentrancyGuard {
 
     function stake(uint256 amount) external whenNotPaused nonReentrant { 
         require(amount > 0, "Amount must be greater than 0");
-        // require(
-        //     dogeToken.allowance(msg.sender, address(this)) >= amount,
-        //     "Insufficient allowance"
-        // );
         dogeToken.transferFrom( 
             msg.sender,
             address(this),

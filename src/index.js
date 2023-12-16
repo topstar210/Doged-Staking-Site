@@ -7,10 +7,11 @@ import { contractABI, wwDogeTokenABI } from "./ABIs.js";
 
 // 0x617C6420dB84992f5C0776038839599A285f836D missed dogeToken.allowance
 // 0x37551909564B3b966598046c26078919e61e7FBD stake token is eve 
-const contractAddress = '0x37551909564B3b966598046c26078919e61e7FBD';
+const contractAddress = '0x31Bfad07123fF55E3A2897111A7caf3B55Bfe2D9';
 // 0xB7ddC6414bf4F5515b52D8BdD69973Ae205ff101 wdoge address on dogechain mainnet
 // 0x70acE47D53A8A2C8BfB6b4e5755291570D2449A3 eve token address
-const wwDogeTokenAddress = "0x70acE47D53A8A2C8BfB6b4e5755291570D2449A3";
+// 0x7B4328c127B85369D9f82ca0503B000D09CF9180 DC token
+const wwDogeTokenAddress = "0x7B4328c127B85369D9f82ca0503B000D09CF9180";
 let signer = null;
 let account, provider, contract, wwDogeTokenContract;
 
@@ -49,8 +50,10 @@ async function checkAndApproveToken(etherAmount) {
       const tx = await wwDogeTokenContract.approve(contractAddress, etherAmount);
       await tx.wait();
     }
+    return true;
   } catch (error) {
     handleError('Approval error', error);
+    return false;
   }
 }
 
@@ -62,7 +65,8 @@ async function stakeTokens() {
   }
 
   const etherAmount = parseEther(amount.toString());
-  await checkAndApproveToken(etherAmount);
+  const chker = await checkAndApproveToken(etherAmount);
+  if(!chker) return;
 
   try {
     const tx = await contract.stake(etherAmount);
